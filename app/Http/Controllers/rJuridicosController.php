@@ -271,8 +271,9 @@ class rJuridicosController extends Controller
                 }
             }            
 
+            $xperiodo_id  = (int)date('Y');
             $nuevajuridica->OSC_FOLIO    = $osc_folio;    
-            $nuevajuridica->PERIODO_ID   = $request->periodo_id;
+            $nuevajuridica->PERIODO_ID   = $xperiodo_id;
             $nuevajuridica->OSC_ID       = $request->osc_id;    
 
             $nuevajuridica->DOC_ID12     = $request->doc_id12;

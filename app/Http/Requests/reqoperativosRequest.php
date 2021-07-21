@@ -4,13 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class reqasistenciaRequest extends FormRequest
+class reqoperativosRequest extends FormRequest
 {
     public function messages()
     {
         return [
-            //'iap_id.required'    => 'Id de la IAP es obligatorio.',
-            //'periodo_id.required'=> 'El periodo fiscal es obligatorio.',
+            'osc_id.required'      => 'Id de la OSC es obligatorio.',
+            'periodo_id.required'  => 'El periodo fiscal es obligatorio.'
             //'iap_d01.required'   => 'El archivo del padron de beneficiarios es obligatorio deberá ser en formato Excel.',
             //'per01_id.requered'  => 'La periodicidad del padron de beneficiarios es obligatorio.',            
             //'num01_id.required'  => 'La frecuencia del padron de beneficiarios es obligatorio.',
@@ -64,7 +64,9 @@ class reqasistenciaRequest extends FormRequest
     public function rules()
     {
         return [
-            //'iap_desc.'    => 'required|min:1|max:100',
+            'osc_id'      => 'required',
+            'periodo_id'  => 'required'        
+            //'iap_desc.' => 'required|min:1|max:100',
             //'iap_id'    => 'required',
             //'periodo_id'=> 'required',
             //'iap_d01'   => 'required',

@@ -131,6 +131,7 @@ class oscController extends Controller
                                      'OSC_EMAIL','OSC_SWEB','OSC_PRES','OSC_REPLEGAL','OSC_SRIO','OSC_TESORERO',
                                      'OSC_OBJSOC_1','OSC_OBJSOC_2','GRUPO_ID','OSC_FECCERTIFIC','OSC_FECCERTIFIC2',
                                      'OSC_OTRAREF','OSC_OBS1','OSC_OBS2','ANIO_ID','OSC_FVP','OSC_FVP2','OSC_FVP3',
+                                     'OSC_FRPP',
                                      'INM_ID','PERIODO_ID1','MES_ID1','DIA_ID1','PERIODO_ID2','MES_ID2','DIA_ID2',
                                      'OSC_GEOREF_LATITUD','OSC_GEOREF_LONGITUD','OSC_FOTO1','OSC_FOTO2','OSC_STATUS',
                                      'OSC_FECREG','OSC_FECREG3','IP','LOGIN','FECHA_M','FECHA_M3','IP_M','LOGIN_M')
@@ -166,7 +167,9 @@ class oscController extends Controller
         $regrubro     = regRubroModel::select('RUBRO_ID','RUBRO_DESC')
                         ->orderBy('RUBRO_ID','asc')
                         ->get();  
-        $regvigencia  = regVigenciaModel::select('ANIO_ID', 'ANIO_DESC')->get();
+        $regvigencia  = regVigenciaModel::select('ANIO_ID', 'ANIO_DESC')
+                        ->wherein('ANIO_ID',[0, 99]) 
+                        ->get();
         $reginmuebles = regInmuebleedoModel::select('INM_ID','INM_DESC')->get();
         $regperiodos  = regPeriodosaniosModel::select('PERIODO_ID', 'PERIODO_DESC')->get();         
         $regmeses     = regMesesModel::select('MES_ID','MES_DESC')->get();      
@@ -177,6 +180,7 @@ class oscController extends Controller
                                      'OSC_EMAIL','OSC_SWEB','OSC_PRES','OSC_REPLEGAL','OSC_SRIO','OSC_TESORERO',
                                      'OSC_OBJSOC_1','OSC_OBJSOC_2','GRUPO_ID','OSC_FECCERTIFIC','OSC_FECCERTIFIC2',
                                      'OSC_OTRAREF','OSC_OBS1','OSC_OBS2','ANIO_ID','OSC_FVP','OSC_FVP2','OSC_FVP3',
+                                     'OSC_FRPP',
                                      'INM_ID','PERIODO_ID1','MES_ID1','DIA_ID1','PERIODO_ID2','MES_ID2','DIA_ID2',
                                      'OSC_GEOREF_LATITUD','OSC_GEOREF_LONGITUD','OSC_FOTO1','OSC_FOTO2','OSC_STATUS',
                                      'OSC_FECREG','OSC_FECREG3','IP','LOGIN','FECHA_M','FECHA_M3','IP_M','LOGIN_M')
@@ -273,6 +277,7 @@ class oscController extends Controller
         //$nuevoiap->MES_ID1     = $request->mes_id1;                
         //$nuevoiap->DIA_ID1     = $request->dia_id1;       
         $nuevaiap->OSC_FECCONS2= substr(trim($request->osc_feccons2),0,10);    
+        $nuevaiap->OSC_FRPP    = substr(trim($request->osc_frpp)    ,0,30);    
 
         $nuevaiap->ANIO_ID     = $request->anio_id;        
         
@@ -442,7 +447,9 @@ class oscController extends Controller
         $regrubro     = regRubroModel::select('RUBRO_ID','RUBRO_DESC')
                         ->orderBy('RUBRO_ID','asc')
                         ->get();   
-        $regvigencia  = regVigenciaModel::select('ANIO_ID', 'ANIO_DESC')->get();
+        $regvigencia  = regVigenciaModel::select('ANIO_ID', 'ANIO_DESC')
+                        ->wherein('ANIO_ID',[0, 99]) 
+                        ->get();        
         $reginmuebles = regInmuebleedoModel::select('INM_ID','INM_DESC')->get();
         $regperiodos  = regPeriodosaniosModel::select('PERIODO_ID', 'PERIODO_DESC')->get();         
         $regmeses     = regMesesModel::select('MES_ID','MES_DESC')->get();      
@@ -453,6 +460,7 @@ class oscController extends Controller
                                      'OSC_EMAIL','OSC_SWEB','OSC_PRES','OSC_REPLEGAL','OSC_SRIO','OSC_TESORERO',
                                      'OSC_OBJSOC_1','OSC_OBJSOC_2','GRUPO_ID','OSC_FECCERTIFIC','OSC_FECCERTIFIC2',
                                      'OSC_OTRAREF','OSC_OBS1','OSC_OBS2','ANIO_ID','OSC_FVP','OSC_FVP2','OSC_FVP3',
+                                     'OSC_FRPP',
                                      'INM_ID','PERIODO_ID1','MES_ID1','DIA_ID1','PERIODO_ID2','MES_ID2','DIA_ID2',
                                      'OSC_GEOREF_LATITUD','OSC_GEOREF_LONGITUD','OSC_FOTO1','OSC_FOTO2','OSC_STATUS',
                                      'OSC_FECREG','OSC_FECREG3','IP','LOGIN','FECHA_M','FECHA_M3','IP_M','LOGIN_M')
@@ -537,7 +545,7 @@ class oscController extends Controller
                 'MUNICIPIO_ID'    => $request->municipio_id,
                 'RUBRO_ID'        => $request->rubro_id,
                 'OSC_REGCONS'     => substr(trim(strtoupper($request->osc_regcons)),0,49),
-                'OSC_RFC'         => substr(trim(strtoupper($request->osc_rfc)),0,17),
+                'OSC_RFC'         => substr(trim(strtoupper($request->osc_rfc))    ,0,17),
                 'OSC_CP'          => $request->osc_cp,
                 //'IAP_FECCONS'   => date('Y/m/d', strtotime($request->osc_feccons)), //$request->osc_feccons
                 //'IAP_FECCONS'   => date('Y/m/d', strtotime(trim($dia1[0]->dia_desc.'/'.$mes1[0]->mes_mes.'/'.$request->periodo_id1) )),
@@ -546,6 +554,7 @@ class oscController extends Controller
                 //'MES_ID1'       => $request->mes_id1,
                 //'DIA_ID1'       => $request->dia_id1,                
                 'OSC_FECCONS2'    => substr(trim($request->osc_feccons2),0,10),
+                'OSC_FRPP'        => substr(trim($request->osc_frpp)    ,0,30),                   
 
                 'ANIO_ID'         => $request->anio_id,                
                 //'IAP_FVP'       => date('Y/m/d', strtotime($request->osc_fvp)),
@@ -862,7 +871,9 @@ class oscController extends Controller
         $regrubro     = regRubroModel::select('RUBRO_ID','RUBRO_DESC')
                         ->orderBy('RUBRO_ID','asc')
                         ->get();     
-        $regvigencia  = regVigenciaModel::select('ANIO_ID', 'ANIO_DESC')->get();
+        $regvigencia  = regVigenciaModel::select('ANIO_ID', 'ANIO_DESC')
+                        ->wherein('ANIO_ID',[0, 99]) 
+                        ->get();        
         $reginmuebles = regInmuebleedoModel::select('INM_ID','INM_DESC')->get();
         $regperiodos  = regPeriodosaniosModel::select('PERIODO_ID', 'PERIODO_DESC')->get();         
         $regmeses     = regMesesModel::select('MES_ID','MES_DESC')->get();      
@@ -873,6 +884,7 @@ class oscController extends Controller
                                      'OSC_EMAIL','OSC_SWEB','OSC_PRES','OSC_REPLEGAL','OSC_SRIO','OSC_TESORERO',
                                      'OSC_OBJSOC_1','OSC_OBJSOC_2','GRUPO_ID','OSC_FECCERTIFIC','OSC_FECCERTIFIC2',
                                      'OSC_OTRAREF','OSC_OBS1','OSC_OBS2','ANIO_ID','OSC_FVP','OSC_FVP2','OSC_FVP3',
+                                     'OSC_FRPP',
                                      'INM_ID','PERIODO_ID1','MES_ID1','DIA_ID1','PERIODO_ID2','MES_ID2','DIA_ID2',
                                      'OSC_GEOREF_LATITUD','OSC_GEOREF_LONGITUD','OSC_FOTO1','OSC_FOTO2','OSC_STATUS',
                                      'OSC_FECREG','OSC_FECREG3','IP','LOGIN','FECHA_M','FECHA_M3','IP_M','LOGIN_M')
@@ -916,6 +928,7 @@ class oscController extends Controller
                                 'ANIO_ID'       => $request->anio_id,                
                 
                                 'OSC_FVP2'      => substr(trim($request->osc_fvp2),                0, 10),
+                                'OSC_FRPP'      => substr(trim($request->osc_frpp),                0, 30),   
 
                                 'ENTIDADFEDERATIVA_ID' => $request->entidadfederativa_id,                
                                 'MUNICIPIO_ID'  => $request->municipio_id,
@@ -1015,6 +1028,7 @@ class oscController extends Controller
                                      'OSC_EMAIL','OSC_SWEB','OSC_PRES','OSC_REPLEGAL','OSC_SRIO','OSC_TESORERO',
                                      'OSC_OBJSOC_1','OSC_OBJSOC_2','GRUPO_ID','OSC_FECCERTIFIC','OSC_FECCERTIFIC2',
                                      'OSC_OTRAREF','OSC_OBS1','OSC_OBS2','ANIO_ID','OSC_FVP','OSC_FVP2','OSC_FVP3',
+                                     'OSC_FRPP',
                                      'INM_ID','PERIODO_ID1','MES_ID1','DIA_ID1','PERIODO_ID2','MES_ID2','DIA_ID2',
                                      'OSC_GEOREF_LATITUD','OSC_GEOREF_LONGITUD','OSC_FOTO1','OSC_FOTO2','OSC_STATUS',
                                      'OSC_FECREG','OSC_FECREG3','IP','LOGIN','FECHA_M','FECHA_M3','IP_M','LOGIN_M')

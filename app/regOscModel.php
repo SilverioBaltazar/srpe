@@ -47,6 +47,7 @@ class regOscModel extends Model
     'OSC_FVP',
     'OSC_FVP2',
     'OSC_FVP3',
+    'OSC_FRPP',
     'INM_ID',
     'PERIODO_ID1',
     'MES_ID1',

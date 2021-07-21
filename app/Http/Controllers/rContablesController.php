@@ -20,7 +20,7 @@ use App\regReqContablesModel;
 use App\regPerModel;
 use App\regNumerosModel;
 use App\regFormatosModel;
-
+ 
 // Exportar a excel 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -1702,7 +1702,7 @@ class rContablesController extends Controller
         // **************** actualizar ******************************
         $regcontable = regReqContablesModel::where('OSC_FOLIO',$id);
         if($regcontable->count() <= 0)
-            toastr()->error('No existe otros requisitos enero quotas de 5 al millar.','¡Por favor volver a intentar!',['positionClass' => 'toast-bottom-right']);
+            toastr()->error('No existe Comprobación Deducibles de impuestos.','¡Por favor volver a intentar!',['positionClass' => 'toast-bottom-right']);
         else{        
 
             //***************** Actualizar *****************************
@@ -1739,7 +1739,7 @@ class rContablesController extends Controller
                                       //'NUM_ID10'    => $request->num_id10,                
                                       //'OSC_EDO10'   => $request->osc_edo10,
 
-                                      'PREG_006'    => $preg_006,
+                                      //'PREG_006'    => $preg_006,
 
                                       'IP_M'        => $ip,
                                       'LOGIN_M'     => $nombre,
@@ -1763,7 +1763,7 @@ class rContablesController extends Controller
                                       'LOGIN_M'     => $nombre,
                                       'FECHA_M'     => date('Y/m/d')    //date('d/m/Y')                                
                                     ]);                
-                toastr()->success('Enero Otros requisitos quotas 5 al millar actualizado.','¡Ok!',['positionClass' => 'toast-bottom-right']);
+                toastr()->success('Comprobación Deducibles de impuestos actualizado.','¡Ok!',['positionClass' => 'toast-bottom-right']);
             }
 
             /************ Bitacora inicia *************************************/ 
@@ -1796,9 +1796,9 @@ class rContablesController extends Controller
 
                     $nuevoregBitacora->save();
                     if($nuevoregBitacora->save() == true)
-                        toastr()->success('Trx de otros requisitos enero quotas de 5 al millar dada de alta.','¡Ok!',['positionClass' => 'toast-bottom-right']);
+                        toastr()->success('Trx de Comprobación Deducibles de impuestos dada de alta.','¡Ok!',['positionClass' => 'toast-bottom-right']);
                     else
-                        toastr()->error('Error trx de otros requisitos enero inesperado al dar de alta en bitacora. Por favor volver a interlo.','Ups!',['positionClass' => 'toast-bottom-right']);
+                        toastr()->error('Error trx de Comprobación Deducibles de impuestos inesperado al dar de alta en bitacora. Por favor volver a interlo.','Ups!',['positionClass' => 'toast-bottom-right']);
             }else{                   
                     //*********** Obtine el no. de veces *****************************
                     $xno_veces = regBitacoraModel::where(['PERIODO_ID' => $xperiodo_id, 'PROGRAMA_ID' => $xprograma_id, 
@@ -1817,47 +1817,60 @@ class rContablesController extends Controller
                                             'LOGIN_M' => $regbitacora->LOGIN_M   = $nombre,
                                             'FECHA_M' => $regbitacora->FECHA_M   = date('Y/m/d')  //date('d/m/Y')
                                           ]);
-                toastr()->success('Trx de otros requisitos enero quotas de 5 al millar actualizada en Bitacora.','¡Ok!',['positionClass' => 'toast-bottom-right']);
+                toastr()->success('Trx de Comprobación Deducibles de impuestos actualizada en Bitacora.','¡Ok!',['positionClass' => 'toast-bottom-right']);
             }   /************ Bitacora termina *************************************/         
         }       /************ Termina de actualizar ********************************/
         return redirect()->route('verReqc');    
     }    
 
-    /****************** Editar  *********************************/
+    /****************** Editar enero otros requisitos administrativos quotas de 5 al millar **********/
     public function actionEditarReqc11($id){
-        $nombre        = session()->get('userlog');
-        $pass          = session()->get('passlog');
+        $nombre       = session()->get('userlog');
+        $pass         = session()->get('passlog');
         if($nombre == NULL AND $pass == NULL){
             return view('sicinar.login.expirada');
         }
-        $usuario       = session()->get('usuario');
-        $rango         = session()->get('rango');
-        $arbol_id      = session()->get('arbol_id');        
+        $usuario      = session()->get('usuario');
+        $rango        = session()->get('rango');
+        $arbol_id     = session()->get('arbol_id');        
 
         $regnumeros   = regNumerosModel::select('NUM_ID', 'NUM_DESC')->orderBy('NUM_ID','asc')
                         ->get();
         $regperiodos  = regPfiscalesModel::select('PERIODO_ID', 'PERIODO_DESC')->orderBy('PERIODO_ID','asc')
                         ->get();        
         $regperiodicidad= regPerModel::select('PER_ID', 'PER_DESC')->orderBy('PER_ID','asc')
-                        ->get(); 
-        $regformatos  = regFormatosModel::select('FORMATO_ID','FORMATO_DESC')->get();                               
+                        ->get();     
+        $regformatos  = regFormatosModel::select('FORMATO_ID','FORMATO_DESC')->get();                           
         $regosc       = regOscModel::select('OSC_ID', 'OSC_DESC','OSC_STATUS')->orderBy('OSC_DESC','asc')
                         ->get();
-        $regcontable  = regReqContablesModel::select('OSC_FOLIO','OSC_FOLIO','OSC_ID','PERIODO_ID',
+        $regcontable  = regReqContablesModel::select('OSC_FOLIO','OSC_ID','PERIODO_ID',
                         'DOC_ID6' ,'FORMATO_ID6' ,'OSC_D6' ,'PER_ID6' ,'NUM_ID6' ,'OSC_EDO6',
                         'DOC_ID7' ,'FORMATO_ID7' ,'OSC_D7' ,'PER_ID7' ,'NUM_ID7' ,'OSC_EDO7',
                         'DOC_ID8' ,'FORMATO_ID8' ,'OSC_D8' ,'PER_ID8' ,'NUM_ID8' ,'OSC_EDO8',
                         'DOC_ID9' ,'FORMATO_ID9' ,'OSC_D9' ,'PER_ID9' ,'NUM_ID9' ,'OSC_EDO9',                        
                         'DOC_ID10','FORMATO_ID10','OSC_D10','PER_ID10','NUM_ID10','OSC_EDO10',                        
                         'DOC_ID11','FORMATO_ID11','OSC_D11','PER_ID11','NUM_ID11','OSC_EDO11',
+                        'DOC_ID1002','OSC_D1002','PER_ID1002','NUM_ID1002',
+                        'DOC_ID1003','OSC_D1003','PER_ID1003','NUM_ID1003',
+                        'DOC_ID1004','OSC_D1004','PER_ID1004','NUM_ID1004',
+                        'DOC_ID1005','OSC_D1005','PER_ID1005','NUM_ID1005',
+                        'DOC_ID1006','OSC_D1006','PER_ID1006','NUM_ID1006',
+                        'DOC_ID1007','OSC_D1007','PER_ID1007','NUM_ID1007',
+                        'DOC_ID1008','OSC_D1008','PER_ID1008','NUM_ID1008',
+                        'DOC_ID1009','OSC_D1009','PER_ID1009','NUM_ID1009',
+                        'DOC_ID1010','OSC_D1010','PER_ID1010','NUM_ID1010',
+                        'DOC_ID1011','OSC_D1011','PER_ID1011','NUM_ID1011',
+                        'DOC_ID1012','OSC_D1012','PER_ID1012','NUM_ID1012',
+                        'PREG_1002','PREG_1003','PREG_1004','PREG_1005','PREG_1006',
+                        'PREG_1007','PREG_1008','PREG_1009','PREG_1010','PREG_1011','PREG_1012',                        
                         'PREG_001','PREG_002','PREG_003','PREG_004','PREG_005','PREG_006',                        
                         'OSC_STATUS','FECREG','IP','LOGIN','FECHA_M','IP_M','LOGIN_M')
-                        ->where('OSC_FOLIO',$id)
-                        ->first(); 
+                       ->where('OSC_FOLIO', $id)
+                       ->first();
         if($regcontable->count() <= 0){
-            toastr()->error('No existe registro de información de asistencia social y contable.','Lo siento!',['positionClass' => 'toast-bottom-right']);
+            toastr()->error('No existe Apertura y/o Edo. cta.','Lo siento!',['positionClass' => 'toast-bottom-right']);
             //return redirect()->route('nuevocontable');
-        }   /********************* Termina de actualizar ***********************/
+        }
         return view('sicinar.requisitos.editarReqc11',compact('nombre','usuario','regosc','regcontable','regnumeros', 'regperiodos','regperiodicidad','regformatos'));
     }
 
@@ -1876,13 +1889,26 @@ class rContablesController extends Controller
         // **************** actualizar ******************************
         $regcontable = regReqContablesModel::where('OSC_FOLIO',$id);
         if($regcontable->count() <= 0)
-            toastr()->error('No existen requisitos administrativos.','¡Por favor volver a intentar!',['positionClass' => 'toast-bottom-right']);
+            toastr()->error('No existe Apertura y/o Edo. cta..','¡Por favor volver a intentar!',['positionClass' => 'toast-bottom-right']);
         else{        
 
             //***************** Actualizar *****************************
             //echo "Escribió en el campo de texto 1: " .'-'. $request->osc_d9 .'-'. "<br><br>"; 
             //echo "Escribió en el campo de texto 1: " . $request->osc_d9 . "<br><br>"; 
             //Comprobar  si el campo foto1 tiene un archivo asignado:
+            $preg_006  =str_replace(",", "", $request->preg_006);            
+            $preg_1002 =str_replace(",", "", $request->preg_1002);
+            $preg_1003 =str_replace(",", "", $request->preg_1003);
+            $preg_1004 =str_replace(",", "", $request->preg_1004);
+            $preg_1005 =str_replace(",", "", $request->preg_1005);            
+            $preg_1006 =str_replace(",", "", $request->preg_1006);
+            $preg_1007 =str_replace(",", "", $request->preg_1007);
+            $preg_1008 =str_replace(",", "", $request->preg_1008);
+            $preg_1009 =str_replace(",", "", $request->preg_1009);             
+            $preg_1010 =str_replace(",", "", $request->preg_1010); 
+            $preg_1011 =str_replace(",", "", $request->preg_1011); 
+            $preg_1012 =str_replace(",", "", $request->preg_1012);            
+
             $name11 =null;
             if($request->hasFile('osc_d11')){
                 echo "Escribió en el campo de texto 11: " .'-'. $request->osc_d11 .'-'. "<br><br>"; 
@@ -1896,9 +1922,12 @@ class rContablesController extends Controller
                                       'DOC_ID11'    => $request->doc_id11,
                                       'FORMATO_ID11'=> $request->formato_id11,             
                                       'OSC_D11'     => $name11,           
-                                      'PER_ID11'    => $request->per_id11,
-                                      'NUM_ID11'    => $request->num_id11,                
-                                      'OSC_EDO11'   => $request->osc_edo11,
+                                      //'PER_ID10'    => $request->per_id10,
+                                      //'NUM_ID10'    => $request->num_id10,                
+                                      //'OSC_EDO10'   => $request->osc_edo10,
+
+                                      //'PREG_006'    => $preg_006,
+
                                       'IP_M'        => $ip,
                                       'LOGIN_M'     => $nombre,
                                       'FECHA_M'     => date('Y/m/d')    //date('d/m/Y')                                
@@ -1910,15 +1939,18 @@ class rContablesController extends Controller
                                ->update([  
                                       'DOC_ID11'    => $request->doc_id11,
                                       'FORMATO_ID11'=> $request->formato_id11,             
-                                      //'OSC_D11'   => $name11,           
-                                      'PER_ID11'    => $request->per_id11,
-                                      'NUM_ID11'    => $request->num_id11,                
-                                      'OSC_EDO11'   => $request->osc_edo11,
+                                      //'OSC_D10'   => $name10,           
+                                      //'PER_ID10'    => $request->per_id10,
+                                      //'NUM_ID10'    => $request->num_id10,                
+                                      //'OSC_EDO10'   => $request->osc_edo10,
+
+                                      //'PREG_006'    => $preg_006,
+
                                       'IP_M'        => $ip,
                                       'LOGIN_M'     => $nombre,
                                       'FECHA_M'     => date('Y/m/d')    //date('d/m/Y')                                
                                     ]);                
-                toastr()->success('requisito contable 11 actualizado.','¡Ok!',['positionClass' => 'toast-bottom-right']);
+                toastr()->success('Apertura y/o Edo. cta. actualizado.','¡Ok!',['positionClass' => 'toast-bottom-right']);
             }
 
             /************ Bitacora inicia *************************************/ 
@@ -1951,9 +1983,9 @@ class rContablesController extends Controller
 
                     $nuevoregBitacora->save();
                     if($nuevoregBitacora->save() == true)
-                        toastr()->success('Bitacora dada de alta correctamente.','¡Ok!',['positionClass' => 'toast-bottom-right']);
+                        toastr()->success('Trx de Apertura y/o Edo. cta. dada de alta.','¡Ok!',['positionClass' => 'toast-bottom-right']);
                     else
-                        toastr()->error('Error inesperado al dar de alta la bitacora. Por favor volver a interlo.','Ups!',['positionClass' => 'toast-bottom-right']);
+                        toastr()->error('Error trx de Apertura y/o Edo. cta. inesperado al dar de alta en bitacora. Por favor volver a interlo.','Ups!',['positionClass' => 'toast-bottom-right']);
             }else{                   
                     //*********** Obtine el no. de veces *****************************
                     $xno_veces = regBitacoraModel::where(['PERIODO_ID' => $xperiodo_id, 'PROGRAMA_ID' => $xprograma_id, 
@@ -1963,22 +1995,21 @@ class rContablesController extends Controller
                     $xno_veces = $xno_veces+1;                        
                     //*********** Termina de obtener el no de veces *****************************                    
                     $regbitacora= regBitacoraModel::select('NO_VECES','IP_M','LOGIN_M','FECHA_M')
-                                  ->where(['PERIODO_ID' => $xperiodo_id,'PROGRAMA_ID' => $xprograma_id,
-                                           'MES_ID' => $xmes_id, 'PROCESO_ID' => $xproceso_id, 
-                                           'FUNCION_ID' => $xfuncion_id,'TRX_ID' => $xtrx_id,'FOLIO' => $id])
+                                  ->where(['PERIODO_ID' => $xperiodo_id,'PROGRAMA_ID' => $xprograma_id,'MES_ID' => $xmes_id,
+                                           'PROCESO_ID' => $xproceso_id, 'FUNCION_ID' => $xfuncion_id,'TRX_ID' => $xtrx_id, 
+                                           'FOLIO' => $id])
                                   ->update([
                                             'NO_VECES' => $regbitacora->NO_VECES = $xno_veces,
                                             'IP_M' => $regbitacora->IP           = $ip,
                                             'LOGIN_M' => $regbitacora->LOGIN_M   = $nombre,
                                             'FECHA_M' => $regbitacora->FECHA_M   = date('Y/m/d')  //date('d/m/Y')
                                           ]);
-                toastr()->success('Bitacora actualizada.','¡Ok!',['positionClass' => 'toast-bottom-right']);
+                toastr()->success('Trx de Apertura y/o Edo. cta. actualizada en Bitacora.','¡Ok!',['positionClass' => 'toast-bottom-right']);
             }   /************ Bitacora termina *************************************/         
-
         }       /************ Termina de actualizar ********************************/
-
         return redirect()->route('verReqc');    
     }    
+
 
     /****************** Editar febrero otros requisitos administrativos quotas de 5 al millar **********/
     public function actionEditarReqc1002($id){

@@ -25,7 +25,7 @@
       <h4 style="color:green;" width="80">
           <b>SECRETARIA DE DESARROLLO SOCIAL <br> DIRECCIÓN GENERAL DE BIENESTAR SOCIAL Y FORTALECIMIENTO FAMILIAR</b>
       </h4>
-      <h4 style="color:orange;"><b>SISTEMA DE REGISTRO DEL PADRÓN ESTATAL <br>(SRPE v.1)</b></h4>
+      <h4 style="color:orange;"><b>SISTEMA DE REGISTRO PADRÓN DEL REGISTRO SOCIAL ESTATAL <br>(SRPE v.1)</b></h4>
   </div>
 
   <div class="login-box">

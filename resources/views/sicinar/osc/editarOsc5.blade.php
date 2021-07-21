@@ -134,20 +134,16 @@
                                     <label >Fecha de constitución (dd/mm/aaaa) </label>
                                     <input type="text" class="form-control" name="osc_feccons2" id="osc_feccons2" placeholder="dd/mm/aaaa" value="{{Trim($regosc->osc_feccons2)}}" required>
                                 </div>                                                                 
-                                <div class="col-xs-4 form-group">
-                                    <label >Fecha de vencimiento del Patronato (dd/mm/aaaa) </label>
-                                    <input type="text" class="form-control" name="osc_fvp2" id="osc_fvp2" placeholder="dd/mm/aaaa" value="{{Trim($regosc->osc_fvp2)}}" required>
-                                </div>                                  
                             </div>
 
 
                             <div class="row">
                                 <div class="col-xs-4 form-group">
-                                    <label >Registro de constitución </label>
-                                    <input type="text" class="form-control" name="osc_regcons" id="osc_regcons" placeholder="Registro de constitución" value="{{Trim($regosc->osc_regcons)}}" required>
+                                    <label >Folio reg. público de la propiedad </label>
+                                    <input type="text" class="form-control" name="osc_regcons" id="osc_regcons" placeholder="Folio de registro público de la propiedad" value="{{Trim($regosc->osc_regcons)}}" required>     
                                 </div>                                                                                    
                                 <div class="col-xs-4 form-group">
-                                    <label >Vigencia del patronato en años</label>
+                                    <label >Vigencia de la asociación (años)</label>
                                     <select class="form-control m-bot15" name="anio_id" id="anio_id" required>
                                         <option selected="true" disabled="disabled">Seleccionar la vigencia </option>
                                         @foreach($regvigencia as $vigencia)
@@ -159,19 +155,6 @@
                                         @endforeach
                                     </select>                                  
                                 </div> 
-                                <div class="col-xs-4 form-group">
-                                    <label >Situación del inmueble</label>
-                                    <select class="form-control m-bot15" name="inm_id" id="inm_id" required>
-                                        <option selected="true" disabled="disabled">Seleccionar situación del inmueble</option>
-                                        @foreach($reginmuebles as $inmueble)
-                                            @if($inmueble->inm_id == $regosc->inm_id)
-                                                <option value="{{$inmueble->inm_id}}" selected>{{$inmueble->inm_desc}}</option>
-                                            @else 
-                                               <option value="{{$inmueble->inm_id}}">{{$inmueble->inm_desc}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>                                  
-                                </div>                                    
                             </div>
                             <div class="row">
                                 <div class="col-xs-4 form-group">

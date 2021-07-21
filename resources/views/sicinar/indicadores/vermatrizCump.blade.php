@@ -50,9 +50,6 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    {{ Form::text('bio', null, ['class' => 'form-control', 'placeholder' => 'Objeto social']) }}
-                                </div>
-                                <div class="form-group">
                                     <button type="submit" class="btn btn-default">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
@@ -67,7 +64,7 @@
                                         <th colspan="3" style="background-color:pink;text-align:center;vertical-align: middle;"></th>
                                         <th colspan="4" style="background-color:darkgreen;text-align:center;"><b style="color:white;font-size: x-small;">Requisitos jurídicos</b>
                                         </th>
-                                        <th colspan="3" style="background-color:brown;text-align:center;"><b style="color:white;font-size: x-small;">Requisitos de operación</b>
+                                        <th colspan="3" style="background-color:brown;text-align:center;"><b style="color:white;font-size: x-small;">Requisitos operativos</b>
                                         </th> 
                                         <th colspan="5" style="background-color:darkorange;text-align:center;vertical-align: middle;">Requisitos admon.</th>
                                         <th colspan="2" style="background-color:pink;text-align:center;vertical-align: middle;">Cumplimiento</th>
@@ -84,14 +81,14 @@
                                         <th style="background-color:green;color:white;text-align:center; vertical-align: middle;">Ult.     <br>Protocol.</th>
 
                                         <th style="background-color:brown;color:white;text-align:center; vertical-align: middle;">Padrón   <br>Benef.   </th>
-                                        <th style="background-color:brown;color:white;text-align:center; vertical-align: middle;">Prog.    <br>Trabajo  </th>
-                                        <th style="background-color:brown;color:white;text-align:center; vertical-align: middle;">Informe  <br>Labores  </th>
+                                        <th style="background-color:brown;color:white;text-align:center; vertical-align: middle;">Programa <br>Trabajo  </th>
+                                        <th style="background-color:brown;color:white;text-align:center; vertical-align: middle;">Informe  <br>Anual    </th>
 
-                                        <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Edos.Fin.<br>Bal.Comp.</th> 
                                         <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Presup.  <br>Anual    </th> 
                                         <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Const.   <br>Donativos</th> 
                                         <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Dec.     <br>Anual    </th> 
-                                        <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Cuotas 5 <br>al millar</th> 
+                                        <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Comp.Ded.<br>Impuestos</th> 
+                                        <th style="background-color:darkorange;text-align:center; vertical-align: middle;">Apertura <br>y/o Edo. cta.</th>                                         
 
                                         <th style="background-color:pink;text-align:center; vertical-align: middle;">Total    </th>
                                         <th style="background-color:pink;text-align:center; vertical-align: middle;">%        </th>
@@ -214,53 +211,38 @@
                                                 @endif
                                             @endforeach </small>
                                         </td>                                                                                                                        
-                                        <td style="text-align:center; vertical-align: middle;"><small>
-                                            @foreach($regpadron as $padron)
-                                                @if($padron->osc_id === $osc->osc_id)
-                                                    @if($padron->total > 0)
-                                                        SI
-                                                        <?php $m1 = 1; ?>
-                                                        <?php $a1 = $a1 + 1; ?>
-                                                        @break                                                        
-                                                    @endif                                                    
-                                                @endif
-                                            @endforeach 
-                                            </small>
-                                        </td>                                                                                                           
 
                                         <td style="text-align:center; vertical-align: middle;"><small>
-                                            @foreach($regprogtrab as $progtrab)
-                                                @if($progtrab->osc_id == $osc->osc_id)
-                                                    @if($progtrab->total > 0)
+                                            @foreach($regoperativo as $operativo)
+                                                @if($operativo->osc_id == $osc->osc_id)
+                                                    @if(!empty($operativo->osc_d1)&&(!is_null($operativo->osc_d1)))
                                                         SI
-                                                        <?php $m2 = 1; ?>
-                                                        <?php $a2 = $a2 + 1; ?>
-                                                        @break                                                        
-                                                    @endif
-                                                @endif
-                                            @endforeach </small>
-                                        </td>       
-
-                                        <td style="text-align:center; vertical-align: middle;"><small>
-                                            @foreach($regprogdtrab as $informe)
-                                                @if($informe->osc_id == $osc->osc_id)
-                                                    @if(($informe->metac1+$informe->metac2+$informe->metac3+$informe->metac4) > 0)
-                                                        SI
-                                                        <?php $m3 = 1; ?>
-                                                        <?php $a3 = $a3 + 1; ?>
+                                                        <?php $a1 = 1; ?>
+                                                        <?php $m1 = $m1 + 1; ?>
                                                         @break
                                                     @endif
                                                 @endif
                                             @endforeach </small>
-                                        </td>                                                                                              
-
+                                        </td>
                                         <td style="text-align:center; vertical-align: middle;"><small>
-                                            @foreach($regbalanza as $balanza)
-                                                @if($balanza->osc_id == $osc->osc_id)
-                                                    @if(!empty($balanza->edofinan_foto1)&&(!is_null($balanza->edofinan_foto1)))
+                                            @foreach($regoperativo as $operativo)
+                                                @if($operativo->osc_id == $osc->osc_id)
+                                                    @if(!empty($operativo->osc_d2)&&(!is_null($operativo->osc_d2)))
                                                         SI
-                                                        <?php $n1 = 1; ?>
-                                                        <?php $c1 = $c1 + 1; ?>
+                                                        <?php $a2 = 1; ?>
+                                                        <?php $m2 = $m2 + 1; ?>
+                                                        @break
+                                                    @endif
+                                                @endif
+                                            @endforeach </small>
+                                        </td>
+                                        <td style="text-align:center; vertical-align: middle;"><small>
+                                            @foreach($regoperativo as $operativo)
+                                                @if($operativo->osc_id == $osc->osc_id)
+                                                    @if(!empty($operativo->osc_d3)&&(!is_null($operativo->osc_d3)))
+                                                        SI
+                                                        <?php $a3 = 1; ?>
+                                                        <?php $m3 = $m3 + 1; ?>
                                                         @break
                                                     @endif
                                                 @endif
@@ -272,8 +254,8 @@
                                                 @if($contable->osc_id == $osc->osc_id)
                                                     @if(!empty($contable->osc_d7)&&(!is_null($contable->osc_d7)))
                                                         SI
-                                                        <?php $n2 = 1; ?>
-                                                        <?php $c2 = $c2 + 1; ?>
+                                                        <?php $n1 = 1; ?>
+                                                        <?php $c1 = $c1 + 1; ?>
                                                         @break
                                                     @endif
                                                 @endif
@@ -284,8 +266,8 @@
                                                 @if($contable->osc_id == $osc->osc_id)
                                                     @if(!empty($contable->osc_d8)&&(!is_null($contable->osc_d8)))
                                                         SI
-                                                        <?php $n3 = 1; ?>
-                                                        <?php $c3 = $c3 + 1; ?>
+                                                        <?php $n2 = 1; ?>
+                                                        <?php $c2 = $c2 + 1; ?>
                                                         @break 
                                                     @endif
                                                 @endif
@@ -296,8 +278,8 @@
                                                 @if($contable->osc_id == $osc->osc_id)
                                                     @if(!empty($contable->osc_d9)&&(!is_null($contable->osc_d9)))
                                                         SI
-                                                        <?php $n4 = 1; ?>
-                                                        <?php $c4 = $c4 + 1; ?>
+                                                        <?php $n3 = 1; ?>
+                                                        <?php $c3 = $c3 + 1; ?>
                                                         @break 
                                                     @endif
                                                 @endif
@@ -308,13 +290,25 @@
                                                 @if($contable->osc_id == $osc->osc_id)
                                                     @if(!empty($contable->osc_d10)&&(!is_null($contable->osc_d10)))
                                                         SI
+                                                        <?php $n4 = 1; ?>
+                                                        <?php $c4 = $c4 + 1; ?>
+                                                        @break
+                                                    @endif
+                                                @endif
+                                            @endforeach </small>
+                                        </td>      
+                                        <td style="text-align:center; vertical-align: middle;"><small>
+                                            @foreach($regcontable as $contable)
+                                                @if($contable->osc_id == $osc->osc_id)
+                                                    @if(!empty($contable->osc_d11)&&(!is_null($contable->osc_d11)))
+                                                        SI
                                                         <?php $n5 = 1; ?>
                                                         <?php $c5 = $c5 + 1; ?>
                                                         @break
                                                     @endif
                                                 @endif
                                             @endforeach </small>
-                                        </td>                                                                                                           
+                                        </td>                                                    
 
                                         <?php $totren =$r1+$r2+$r3+$r4 + $m1+$m2+$m3 + $n1+$n2+$n3+$n4+$n5; ?>
                                         <td style="font-size:12px; text-align:center; vertical-align: middle;"><b>{{number_format($totren,0)}}</b></td>
@@ -336,7 +330,6 @@
                                         <?php $pa4 = ($a4/$totacum)*100 ; ?>
                                         <?php $pa5 = ($a5/$totacum)*100 ; ?>
                                         -->
-                                        <?php $pc1 = ($c1/$totacum)*100 ; ?>
                                         <?php $pc1 = ($c1/$totacum)*100 ; ?>
                                         <?php $pc2 = ($c2/$totacum)*100 ; ?>
                                         <?php $pc3 = ($c3/$totacum)*100 ; ?> 
@@ -409,7 +402,7 @@
                                     <tr>
                                         <th colspan="3" style="background-color:pink;                  text-align:center;vertical-align: middle;"><b>Cumplimiento de Requisitos </b></th>
                                         <th colspan="4" style="background-color:darkgreen; color:white;text-align:center;vertical-align: middle;"><b>Jurídicos = {{number_format($cr1,0)}} %</b></th>
-                                        <th colspan="3" style="background-color:brown;     color:white;text-align:center;vertical-align: middle;"><b>Operación = {{number_format($cr2,0)}} %</b>        </th> 
+                                        <th colspan="3" style="background-color:brown;     color:white;text-align:center;vertical-align: middle;"><b>Operativos = {{number_format($cr2,0)}} %</b>        </th> 
                                         <th colspan="5" style="background-color:darkorange;color:white;text-align:center;vertical-align: middle;"><b>Administrativos = {{number_format($cr3,0)}}%</b></th>
                                         <th colspan="1" style="background-color:pink;                  text-align:center;vertical-align: middle;"><b>{{number_format($sumpor,0)}} </b></th>
                                         <th colspan="1" style="background-color:pink;                  text-align:center;vertical-align: middle;"></th>
@@ -422,7 +415,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    </div> 
 @endsection
 
 @section('request')

@@ -19,7 +19,7 @@
         <section class="content-header">
             <h1>
                 Menú
-                <small> Requisitos admon. - Otros requisitos - Editar</small>
+                <small>4. Requisitos admon. - Editar</small>
             </h1>
         </section>
         <section class="content">
@@ -31,9 +31,8 @@
                             <div class="row">
                                 <div class="col-xs-4 form-group">
                                     <input type="hidden" name="periodo_id" id="periodo_id" value="{{$regcontable->periodo_id}}">                                
-                                    <label>Periodo fiscal <br>
-                                        {{$regcontable->periodo_id}}
-                                    </label>
+                                    <label>Periodo fiscal </label><br>
+                                    <label style="color:green;">{{$regcontable->periodo_id}}</label>
                                 </div>                                   
                                 <div class="col-xs-4 form-group">
                                     <input type="hidden" name="osc_id" id="osc_id" value="{{$regcontable->osc_id}}">
@@ -46,8 +45,8 @@
                                     @endforeach
                                 </div>  
                                 <div class="col-xs-4 form-group">
-                                    <label>Folio <br> {{$regcontable->osc_folio}}</label>
-                                </div>                                                                     
+                                    <label>Folio </label><br><label style="color:green;">{{$regcontable->osc_folio}}</label>
+                                </div>                                                                                                                            
                             </div>
 
                             <div class="row">

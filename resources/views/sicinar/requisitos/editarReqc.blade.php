@@ -30,7 +30,7 @@
                         {!! Form::open(['route' => ['actualizarReqc',$regcontable->osc_folio], 'method' => 'PUT', 'id' => 'actualizarReqc', 'enctype' => 'multipart/form-data']) !!}
                         <div class="box-body">
                             <div class="row">                            
-                                <div class="col-xs-4 form-group" style="color:green;">
+                                <div class="col-xs-6 form-group" style="color:green;">
                                     <input type="hidden" name="periodo_id" id="periodo_id" value="{{$regcontable->periodo_id}}">                                
                                     <label>Periodo fiscal <br>
                                         {{$regcontable->periodo_id}}
@@ -52,7 +52,7 @@
                             </div>
            
                             <div class="row">               
-                                <div class="col-xs-4 form-group">
+                                <div class="col-xs-6 form-group">
                                     @if(!empty($regcontable->osc_d7)||(!is_null($regcontable->osc_d7)))
                                         <label >Archivo de presupuesto anual en formato excel </label><br>
                                         <a href="/images/{{$regcontable->osc_d7}}" class="btn btn-danger" title="documento de presupuesto anual"><i class="fa fa-file-excel-o"></i><small>Excel</small>
@@ -78,23 +78,9 @@
                                     </select>                                                    
                                 </div>                                    
                             </div>
-                            <div class="row">        
-                                <div class="col-xs-4 form-group">
-                                    <label >$ Ingreso estimado  </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_003" id="preg_003" placeholder="999999999999.99" value="{{$regcontable->preg_003}}" required>
-                                </div>                                                                        
-                                <div class="col-xs-4 form-group">
-                                    <label >$ Egreso estimado </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_004" id="preg_004" placeholder="999999999999.99" value="{{$regcontable->preg_004}}" required>
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >$ Inversiones proyectadas </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_005" id="preg_005" placeholder="999999999999.99" value="{{$regcontable->preg_005}}" required>
-                                </div>                                  
-                            </div>                                           
 
                             <div class="row">               
-                                <div class="col-xs-4 form-group">
+                                <div class="col-xs-6 form-group">
                                     @if(!empty($regcontable->osc_d8)||(!is_null($regcontable->osc_d8)))
                                         <label >Archivo de constancia de autorización para recibir donativos en formato PDF </label><br>
                                         <a href="/images/{{$regcontable->osc_d8}}" class="btn btn-danger" title="constancia de autorización para recibir donativos"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
@@ -149,233 +135,61 @@
                                 </div>                                    
                             </div>
 
-                            <div class="box box-success">
                             <div class="row">               
-                                  <div class="col-xs-12 form-group">
-                                    <label > *** Quotas de 5 al millar en formato PDF ***</label>
-                                </div>                                                                      
-                            </div>                            
-
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
+                                <div class="col-xs-6 form-group">
                                     @if(!empty($regcontable->osc_d10) || !is_null($regcontable->osc_d10))
-                                        <label >Enero archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d10}}" class="btn btn-danger" title="Enero cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
+                                        <label >Archivo de Comprobación deducibles de impuestos en formato PDF </label><br>
+                                        <a href="/images/{{$regcontable->osc_d10}}" class="btn btn-danger" title="Archivo de Comprobación deducibles de impuestos "><i class="fa fa-file-pdf-o"></i><small>PDF</small>
                                         </a>{{$regcontable->osc_d10}}
                                         <input type="hidden" name="doc_id10" id="doc_id10" value="15">
                                     @else
-                                        <label >Enero archivo en formato PDF </label><br>
+                                        <label >Archivo de Comprobación deducibles de impuestos en formato PDF </label><br>
                                         <b style="color:darkred;">** Pendiente **</b>
                                         <input type="hidden" name="doc_id10" id="doc_id10" value="15">
                                     @endif
                                 </div>  
                                 <div class="col-xs-4 form-group">
-                                    <label >Enero - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_006" id="preg_006" placeholder="999999999999.99" value="{{$regcontable->preg_006}}" required>
-                                </div>                                                                        
+                                    <label >Formato del archivo </label>
+                                    <select class="form-control m-bot15" name="formato_id10" id="formato_id10" required>
+                                        <option selected="true" disabled="disabled">Seleccionar formato del archivo </option>
+                                        @foreach($regformatos as $formato)
+                                            @if($formato->formato_id == $regcontable->formato_id10)
+                                                <option value="{{$formato->formato_id}}" selected>{{$formato->formato_desc}}</option>
+                                            @else 
+                                               <option value="{{$formato->formato_id}}">{{$formato->formato_desc}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>                                                    
+                                </div>                                    
                             </div>
+
                             <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1002) || !is_null($regcontable->osc_d1002))
-                                        <label >Febrero archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1002}}" class="btn btn-danger" title="Febrero cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1002}}
-                                        <input type="hidden" name="doc_id1002" id="doc_id1002" value="15">
+                                <div class="col-xs-6 form-group">
+                                    @if(!empty($regcontable->osc_d11) || !is_null($regcontable->osc_d11))
+                                        <label >Archivo de Apertura y/o edo. de cuenta en formato PDF </label><br>
+                                        <a href="/images/{{$regcontable->osc_d11}}" class="btn btn-danger" title="Apertura de cuenta y/o estado de cuenta"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
+                                        </a>{{$regcontable->osc_d11}}
+                                        <input type="hidden" name="doc_id11" id="doc_id11" value="15">
                                     @else
-                                        <label >Febrero archivo en formato PDF </label><br>
+                                        <label >Archivo de Apertura y/o edo. de cuenta en formato PDF </label><br>
                                         <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1002" id="doc_id1002" value="15">
+                                        <input type="hidden" name="doc_id11" id="doc_id11" value="15">
                                     @endif
                                 </div>  
                                 <div class="col-xs-4 form-group">
-                                    <label >Febrero - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1002" id="preg_1002" placeholder="999999999999.99" value="{{$regcontable->preg_1002}}" required>
-                                </div>                                                                        
+                                    <label >Formato del archivo </label>
+                                    <select class="form-control m-bot15" name="formato_id11" id="formato_id11" required>
+                                        <option selected="true" disabled="disabled">Seleccionar formato del archivo </option>
+                                        @foreach($regformatos as $formato)
+                                            @if($formato->formato_id == $regcontable->formato_id11)
+                                                <option value="{{$formato->formato_id}}" selected>{{$formato->formato_desc}}</option>
+                                            @else 
+                                               <option value="{{$formato->formato_id}}">{{$formato->formato_desc}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>                                                    
+                                </div>                                                                    
                             </div>  
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1003) || !is_null($regcontable->osc_d1003))
-                                        <label >Marzo archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1003}}" class="btn btn-danger" title="Marzo cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1003}}
-                                        <input type="hidden" name="doc_id1003" id="doc_id1003" value="15">
-                                    @else
-                                        <label >Marzo archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1003" id="doc_id1003" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Marzo - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1003" id="preg_1003" placeholder="999999999999.99" value="{{$regcontable->preg_1003}}" required>
-                                </div>                                                                        
-                            </div>                                                              
-
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1004) || !is_null($regcontable->osc_d1004))
-                                        <label >Abril archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1004}}" class="btn btn-danger" title="Abril cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1004}}
-                                        <input type="hidden" name="doc_id1004" id="doc_id1004" value="15">
-                                    @else
-                                        <label >Abril archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1004" id="doc_id1004" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Abril - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1004" id="preg_1004" placeholder="999999999999.99" value="{{$regcontable->preg_1004}}" required>
-                                </div>                                                                        
-                            </div>    
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1005) || !is_null($regcontable->osc_d1005))
-                                        <label >Mayo archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1005}}" class="btn btn-danger" title="Mayo cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1005}}
-                                        <input type="hidden" name="doc_id1005" id="doc_id1005" value="15">
-                                    @else
-                                        <label >Mayo archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1005" id="doc_id1005" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Mayo - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1005" id="preg_1005" placeholder="999999999999.99" value="{{$regcontable->preg_1005}}" required>
-                                </div>                                                                        
-                            </div>    
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1006) || !is_null($regcontable->osc_d1006))
-                                        <label >Junio archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1006}}" class="btn btn-danger" title="Junio cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1006}}
-                                        <input type="hidden" name="doc_id1006" id="doc_id1006" value="15">
-                                    @else
-                                        <label >Junio archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1006" id="doc_id1006" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Junio - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1006" id="preg_1006" placeholder="999999999999.99" value="{{$regcontable->preg_1006}}" required>
-                                </div>                                                                        
-                            </div>
-
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1007) || !is_null($regcontable->osc_d1007))
-                                        <label >Julio archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1007}}" class="btn btn-danger" title="Julio cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1007}}
-                                        <input type="hidden" name="doc_id1007" id="doc_id1007" value="15">
-                                    @else
-                                        <label >Julio archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1007" id="doc_id1007" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Julio - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1007" id="preg_1007" placeholder="999999999999.99" value="{{$regcontable->preg_1007}}" required>
-                                </div>                                                                        
-                            </div>    
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1008) || !is_null($regcontable->osc_d1008))
-                                        <label >Agosto archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1008}}" class="btn btn-danger" title="Agosto cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1008}}
-                                        <input type="hidden" name="doc_id1008" id="doc_id1008" value="15">
-                                    @else
-                                        <label >Agosto archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1008" id="doc_id1008" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Agosto - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1008" id="preg_1008" placeholder="999999999999.99" value="{{$regcontable->preg_1008}}" required>
-                                </div>                                                                        
-                            </div>    
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1009) || !is_null($regcontable->osc_d1009))
-                                        <label >Septiembre archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1009}}" class="btn btn-danger" title="Septiembre cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1009}}
-                                        <input type="hidden" name="doc_id1009" id="doc_id1009" value="15">
-                                    @else
-                                        <label >Septiembre archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1009" id="doc_id1009" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Septiembre - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1009" id="preg_1009" placeholder="999999999999.99" value="{{$regcontable->preg_1009}}" required>
-                                </div>                                                                        
-                            </div>   
-
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1010) || !is_null($regcontable->osc_d1010))
-                                        <label >Octubre archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1010}}" class="btn btn-danger" title="Octubre cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1007}}
-                                        <input type="hidden" name="doc_id1010" id="doc_id1010" value="15">
-                                    @else
-                                        <label >Octubre archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1010" id="doc_id1010" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Octubre - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1010" id="preg_1010" placeholder="999999999999.99" value="{{$regcontable->preg_1010}}" required>
-                                </div>                                                                        
-                            </div>    
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1011) || !is_null($regcontable->osc_d1011))
-                                        <label >Noviembre archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1011}}" class="btn btn-danger" title="Noviembre cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1011}}
-                                        <input type="hidden" name="doc_id1011" id="doc_id1011" value="15">
-                                    @else
-                                        <label >Noviembre archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1011" id="doc_id1011" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Noviembre - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1011" id="preg_1011" placeholder="999999999999.99" value="{{$regcontable->preg_1011}}" required>
-                                </div>                                                                        
-                            </div>    
-                            <div class="row">               
-                                <div class="col-xs-4 form-group">
-                                    @if(!empty($regcontable->osc_d1012) || !is_null($regcontable->osc_d1012))
-                                        <label >Diciembre archivo en formato PDF </label><br>
-                                        <a href="/images/{{$regcontable->osc_d1012}}" class="btn btn-danger" title="Diciembre cuotas 5 al millar"><i class="fa fa-file-pdf-o"></i><small>PDF</small>
-                                        </a>{{$regcontable->osc_d1012}}
-                                        <input type="hidden" name="doc_id1012" id="doc_id1012" value="15">
-                                    @else
-                                        <label >Diciembre archivo en formato PDF </label><br>
-                                        <b style="color:darkred;">** Pendiente **</b>
-                                        <input type="hidden" name="doc_id1012" id="doc_id1012" value="15">
-                                    @endif
-                                </div>  
-                                <div class="col-xs-4 form-group">
-                                    <label >Diciembre - Monto de aportación monetaria </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_1012" id="preg_1012" placeholder="999999999999.99" value="{{$regcontable->preg_1012}}" required>
-                                </div>                                                                        
-                            </div>                                                                                                                                                
-                            </div>                                                                                             
 
                             <div class="row">
                                 @if(count($errors) > 0)

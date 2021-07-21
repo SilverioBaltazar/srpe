@@ -10,10 +10,6 @@
     {{$usuario}}
 @endsection
 
-@section('estructura')
-    {{$estructura}}
-@endsection
-
 @section('content')
     <div class="content-wrapper" id="principal">
         <section class="content-header">
@@ -79,34 +75,34 @@
                                     <label>Rol </label>
                                     <select class="form-control m-bot15" name="perfil" id="perfil" required>
                                         @if($user->status_1 == '4')
-                                            <option value="0"         >IAP          </option>
+                                            <option value="0"         >OSC         </option>
                                             <option value="1"         >Operativo    </option>
                                             <option value="2"         >Particular   </option>
                                             <option value="3"         >Administrador</option>
                                             <option value="4" selected>Super Admon. </option>
                                         @else
                                             @if($user->status_1 == '3')
-                                                <option value="0"         >IAP          </option>
+                                                <option value="0"         >OSC          </option>
                                                 <option value="1"         >Operativo    </option>
                                                 <option value="2"         >Particular   </option>
                                                 <option value="3" selected>Administrador</option>
                                                 <option value="4"         >Super Admon. </option>
                                             @else
                                                 @if($user->status_1 == '2')
-                                                    <option value="0"         >IAP          </option>
+                                                    <option value="0"         >OSC          </option>
                                                     <option value="1"         >Operativo    </option>
                                                     <option value="2" selected>Particular   </option>
                                                     <option value="3"         >Administrador</option>
                                                     <option value="4"         >Super Admon. </option>
                                                 @else
                                                     @if($user->status_1 == '1')
-                                                        <option value="0"         >IAP          </option>
+                                                        <option value="0"         >OSC          </option>
                                                         <option value="1" selected>Operativo    </option>
                                                         <option value="2"         >Particular   </option>
                                                         <option value="3"         >Administrador</option>
                                                         <option value="4"         >Super Admon. </option>
                                                     @else
-                                                        <option value="0" selected>IAP          </option>
+                                                        <option value="0" selected>OSC          </option>
                                                         <option value="1"         >Operativo    </option>
                                                         <option value="2"         >Particular   </option>
                                                         <option value="3"         >Administrador</option>
@@ -118,27 +114,14 @@
                                     </select>
                                 </div>                                  
                                 <div class="col-xs-4 form-group">
-                                    <label>Unidad Administrativa: {{$user->cve_dependencia}}</label>
-                                    <select class="form-control m-bot15" name="unidad" id="unidad" required>
-                                    <option selected="true" disabled="disabled">Selecciona Unidad Administrativa</option>
-                                    @foreach($dependencias as $dependencia)
-                                        @if(rtrim($dependencia->depen_id," ") == $user->cve_dependencia)
-                                            <option value="{{$dependencia->depen_id}}" selected>{{$dependencia->depen_id.' '.$dependencia->depen_desc}}</option>
-                                        @else
-                                            <option value="{{$dependencia->depen_id}}">{{$dependencia->depen_id.' '.$dependencia->depen_desc}}</option>
-                                        @endif
-                                    @endforeach
-                                    </select>
-                                </div>                                
-                                <div class="col-xs-4 form-group">
-                                    <label >IAP </label>
-                                    <select class="form-control m-bot15" name="iap_id" id="iap_id" required>
-                                    <option selected="true" disabled="disabled">Seleccionar IAP </option>
-                                    @foreach($regiap as $iap)
-                                        @if($iap->iap_id == $user->cve_arbol)
-                                            <option value="{{$iap->iap_id}}" selected>{{$iap->iap_desc}}</option>
+                                    <label >OSC </label>
+                                    <select class="form-control m-bot15" name="osc_id" id="osc_id" required>
+                                    <option selected="true" disabled="disabled">Seleccionar OSC </option>
+                                    @foreach($regosc as $osc)
+                                        @if($osc->osc_id == $user->cve_arbol)
+                                            <option value="{{$osc->osc_id}}" selected>{{$osc->osc_desc}}</option>
                                         @else 
-                                            <option value="{{$iap->iap_id}}">{{$iap->iap_desc}}</option>
+                                            <option value="{{$osc->osc_id}}">{{$osc->osc_desc}}</option>
                                         @endif                                    
                                     @endforeach
                                     </select>                           
@@ -164,10 +147,10 @@
                 </div>
             </div>
         </section>
-    </div>
+    </div> 
 @endsection
 
-@section('request')
+@section('request') 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

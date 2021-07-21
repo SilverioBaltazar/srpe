@@ -19,7 +19,7 @@
         <section class="content-header">
             <h1>
                 Menú
-                <small> Requisitos admon. - Otros requisitos - Editar</small>
+                <small>4. Requisitos admon. - Editar</small>
             </h1>
         </section>
         <section class="content">
@@ -32,9 +32,8 @@
                             <div class="row">
                                 <div class="col-xs-4 form-group">
                                     <input type="hidden" name="periodo_id" id="periodo_id" value="{{$regcontable->periodo_id}}">                                
-                                    <label>Periodo fiscal <br>
-                                        {{$regcontable->periodo_id}}
-                                    </label>
+                                    <label>Periodo fiscal </label><br>
+                                    <label style="color:green;">{{$regcontable->periodo_id}}</label>
                                 </div>                                   
                                 <div class="col-xs-4 form-group">
                                     <input type="hidden" name="osc_id" id="osc_id" value="{{$regcontable->osc_id}}">
@@ -47,7 +46,7 @@
                                     @endforeach
                                 </div>  
                                 <div class="col-xs-4 form-group">
-                                    <label>Folio <br> {{$regcontable->osc_folio}}</label>
+                                    <label>Folio </label><br><label style="color:green;">{{$regcontable->osc_folio}}</label>
                                 </div>                                                                                                                            
                             </div>
 
@@ -90,21 +89,6 @@
                                     </select>                                                    
                                 </div>                                  
                             </div>
-
-                            <div class="row">        
-                                <div class="col-xs-2 form-group">
-                                    <label >$ Ingreso estimado  </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_003" id="preg_003" placeholder="999999999999.99" value="{{$regcontable->preg_003}}" required>
-                                </div>                                                                        
-                                <div class="col-xs-2 form-group">
-                                    <label >$ Egreso estimado </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_004" id="preg_004" placeholder="999999999999.99" value="{{$regcontable->preg_004}}" required>
-                                </div>  
-                                <div class="col-xs-3 form-group">
-                                    <label >$ Inversiones proyectadas </label>
-                                    <input type="number" min="0" max="999999999999.99" step=".01" class="form-control" name="preg_005" id="preg_005" placeholder="999999999999.99" value="{{$regcontable->preg_005}}" required>
-                                </div>                                             
-                            </div>                                            
 
                             <div class="row">
                                 @if(count($errors) > 0)

@@ -18,12 +18,11 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>Menu 
-                <small>Requisitos admon. - Otros requisitos - Seleccionar para editar o registrar</small>
+                <small>4. Requisitos admon. - Seleccionar para editar o registrar</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Menú</a></li>
-                <li><a href="#">Requisitos admon.  </a></li>
-                <li><a href="#">Otros requisitos      </a></li>         
+                <li><a href="#">4. Requisitos admon.  </a></li>
             </ol>
         </section>
         <section class="content">
@@ -58,7 +57,8 @@
                                         <th style="text-align:center; vertical-align: middle;font-size:11px;">Presup.<br>Anual </th>
                                         <th style="text-align:center; vertical-align: middle;font-size:11px;">Constan.<br>Recibir<br>Donativos</th>
                                         <th style="text-align:center; vertical-align: middle;font-size:11px;">Declar.<br>Anual </th>
-                                        <th colspan="12" style="background-color:darkgreen;text-align:center;"><b style="color:white;font-size: x-small;">Cuotas de 5 al millar<br>Enero ... Diciembre</b></th>
+                                        <th style="text-align:center; vertical-align: middle;font-size:11px;">Comprobación<br>Deducibles <br>de impuestos</th>
+                                        <th style="text-align:center; vertical-align: middle;font-size:11px;">Apertura y/o<br>Edo. cta.</th>
                                         <th style="text-align:center; vertical-align: middle;font-size:11px; width:100px;">Acciones</th>
                                     </tr>
                                 </thead>
@@ -116,164 +116,32 @@
                                             </td>   
                                         @endif
                                         @if(!empty($contable->osc_d10)&&(!is_null($contable->osc_d10)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Enero Cuotas de 5 al millar">
+                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Comprobación deducibles de impuestos">
                                                 <a href="/images/{{$contable->osc_d10}}" class="btn btn-danger" title="Enero Cuotas de 5 al millar"><i class="fa fa-file-pdf-o">
                                                 </a>
-                                                <a href="{{route('editarReqc10',$contable->osc_folio)}}" class="btn badge-warning" title="Editar enero Cuotas de 5 al millar"><i class="fa fa-edit"></i>
+                                                <a href="{{route('editarReqc10',$contable->osc_folio)}}" class="btn badge-warning" title="Comprobación deducibles de impuestos"><i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                         @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Enero Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc10',$contable->osc_folio)}}" class="btn badge-warning" title="Editar enero Cuotas de 5 al millar"><i class="fa fa-edit"></i>
+                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Comprobación deducibles de impuestos "><i class="fa fa-times"></i>
+                                                <a href="{{route('editarReqc10',$contable->osc_folio)}}" class="btn badge-warning" title="Comprobación deducibles de impuestos"><i class="fa fa-edit"></i>
                                                 </a>
                                             </td>   
                                         @endif
-                                        @if(!empty($contable->osc_d1002)&&(!is_null($contable->osc_d1002)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Febrero Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1002}}" class="btn btn-danger" title="Febrero Cuotas de 5 al millar"><i class="fa fa-file-pdf-o">
+                                        @if(!empty($contable->osc_d11)&&(!is_null($contable->osc_d11)))
+                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Apertura y/o edo. de cuenta">
+                                                <a href="/images/{{$contable->osc_d11}}" class="btn btn-danger" title="Apertura y/o edo. de cuenta"><i class="fa fa-file-pdf-o">
                                                 </a>
-                                                <a href="{{route('editarReqc1002',$contable->osc_folio)}}" class="btn badge-warning" title="Editar febrero Cuotas de 5 al millar"><i class="fa fa-edit"></i>
+                                                <a href="{{route('editarReqc11',$contable->osc_folio)}}" class="btn badge-warning" title="Apertura y/o edo. de cuenta"><i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                         @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Febrero Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1002',$contable->osc_folio)}}" class="btn badge-warning" title="Editar febrero Cuotas de 5 al millar"><i class="fa fa-edit"></i>
+                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Apertura y/o edo. de cuenta"><i class="fa fa-times"></i>
+                                                <a href="{{route('editarReqc11',$contable->osc_folio)}}" class="btn badge-warning" title="Apertura y/o edo. de cuenta"><i class="fa fa-edit"></i>
                                                 </a>
                                             </td>   
                                         @endif
-                                        @if(!empty($contable->osc_d1003)&&(!is_null($contable->osc_d1003)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Marzo Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1003}}" class="btn btn-danger" title="Marzo Cuotas de 5 al millar"><i class="fa fa-file-pdf-o">
-                                                </a>
-                                                <a href="{{route('editarReqc1003',$contable->osc_folio)}}" class="btn badge-warning" title="Editar marzo Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Marzo Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1003',$contable->osc_folio)}}" class="btn badge-warning" title="Editar marzo Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
 
-                                        @if(!empty($contable->osc_d1004)&&(!is_null($contable->osc_d1004)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Abril Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1004}}" class="btn btn-danger" title="Abril Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1004',$contable->osc_folio)}}" class="btn badge-warning" title="Editar abril Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Abril Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1004',$contable->osc_folio)}}" class="btn badge-warning" title="Editar abril Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
-                                        @if(!empty($contable->osc_d1005)&&(!is_null($contable->osc_d1005)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Mayo Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1005}}" class="btn btn-danger" title="Mayo Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1005',$contable->osc_folio)}}" class="btn badge-warning" title="Editar mayo Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Mayo Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1005',$contable->osc_folio)}}" class="btn badge-warning" title="Editar mayo Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
-                                        @if(!empty($contable->osc_d1006)&&(!is_null($contable->osc_d1006)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Junio Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1006}}" class="btn btn-danger" title="Junio Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1006',$contable->osc_folio)}}" class="btn badge-warning" title="Editar junio Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Junio Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1006',$contable->osc_folio)}}" class="btn badge-warning" title="Editar junio Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif                                                                                 
-
-                                        @if(!empty($contable->osc_d1007)&&(!is_null($contable->osc_d1007)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Agosto Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1007}}" class="btn btn-danger" title="Agosto Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1007',$contable->osc_folio)}}" class="btn badge-warning" title="Editar agosto Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Agosto Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1007',$contable->osc_folio)}}" class="btn badge-warning" title="Editar agosto Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
-                                        @if(!empty($contable->osc_d1008)&&(!is_null($contable->osc_d1008)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Septiembre Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1008}}" class="btn btn-danger" title="Septiembre Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1008',$contable->osc_folio)}}" class="btn badge-warning" title="Editar septiembre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Septiembre Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1008',$contable->osc_folio)}}" class="btn badge-warning" title="Editar septiembre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
-                                        @if(!empty($contable->osc_d1009)&&(!is_null($contable->osc_d1009)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Octubre Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1009}}" class="btn btn-danger" title="Octubre Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1009',$contable->osc_folio)}}" class="btn badge-warning" title="Editar octubre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Octubre Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1009',$contable->osc_folio)}}" class="btn badge-warning" title="Editar octubre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif                                                                             
-
-                                        @if(!empty($contable->osc_d1010)&&(!is_null($contable->osc_d1010)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Octubre Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1010}}" class="btn btn-danger" title="Octubre Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1010',$contable->osc_folio)}}" class="btn badge-warning" title="Editar octubre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Octubre Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1010',$contable->osc_folio)}}" class="btn badge-warning" title="Editar octubre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
-                                        @if(!empty($contable->osc_d1011)&&(!is_null($contable->osc_d1011)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Noviembre Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1011}}" class="btn btn-danger" title="Noviembre Cuotas de 5 al millar"><i class="fa fa-file-pdf-o">
-                                                </a>
-                                                <a href="{{route('editarReqc1011',$contable->osc_folio)}}" class="btn badge-warning" title="Editar noviembre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Noviembre Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1011',$contable->osc_folio)}}" class="btn badge-warning" title="Editar noviembre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif 
-                                        @if(!empty($contable->osc_d1012)&&(!is_null($contable->osc_d1012)))
-                                            <td style="color:darkgreen;text-align:center; vertical-align: middle;font-size:11px;" title="Diciembre Cuotas de 5 al millar">
-                                                <a href="/images/{{$contable->osc_d1012}}" class="btn btn-danger" title="Diciembre Cuotas de 5 al millar"><i class="fa fa-file-pdf-o"></i>
-                                                </a>
-                                                <a href="{{route('editarReqc1012',$contable->osc_folio)}}" class="btn badge-warning" title="Editar diciembre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @else
-                                            <td style="color:darkred; text-align:center; vertical-align: middle;font-size:11px;" title="Diciembre Cuotas de 5 al millar"><i class="fa fa-times"></i>
-                                                <a href="{{route('editarReqc1012',$contable->osc_folio)}}" class="btn badge-warning" title="Editar diciembre Cuotas de 5 al millar"><i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>   
-                                        @endif                                            
                                         <td style="text-align:center; vertical-align: middle;font-size:11px;">
                                             <a href="{{route('editarReqc',$contable->osc_folio)}}" class="btn badge-warning" title="Editar requisitos admon."><i class="fa fa-edit"></i>
                                             </a>

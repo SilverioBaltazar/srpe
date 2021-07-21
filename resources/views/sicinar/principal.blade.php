@@ -151,42 +151,32 @@
               </li>
 
               <li  class="treeview">
-                <a href="#"><i class="fa fa-cubes"></i> <span>1. Registro OSC </span>
+                <a href="#"><i class="fa fa-cubes"></i> <span>Registro al padrón Estatal</span>
                   <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>              
                 <ul class="treeview-menu">
                   @if(session()->get('rango') !== '0')
-                      <li><a href="{{route('verOsc')}}" > <i class="fa fa-circle-o"></i>1. Registro OSC </a></li>
+                      <li><a href="{{route('verOsc')}}"  ><i class="fa fa-file-o"  ></i>1. Registro OSC          </a></li>
+                      <li><a href="{{route('verJur')}}"  ><i class="fa fa-gavel"   ></i>2. Requisitos Jurídicos  </a></li>
+                      <li><a href="{{route('verReqop')}}"><i class="fa fa-wheelchair-alt"></i>3. Requisitos operativos</li>
+                      <li><a href="{{route('verReqc')}}" ><i class="fa fa-money"   ></i>4. Requisitos Admon.     </a></li>
                   @else
-                      <li><a href="{{route('verOsc5')}}"> <i class="fa fa-circle-o"></i>1. Registro OSC </a></li>
+                      <li><a href="{{route('verOsc5')}}" ><i class="fa fa-file-o"  ></i>1. Registro OSC          </a></li>
+                      <li><a href="{{route('verJur')}}"  ><i class="fa fa-gavel"   ></i>2. Requisitos Jurídicos  </a></li>
+                      <li><a href="{{route('verReqop')}}"><i class="fa fa-wheelchair-alt"></i>3. Requisitos operativos</li>
+                      <li><a href="{{route('verReqc')}}" ><i class="fa fa-money"   ></i>4. Requisitos Admon.     </a></li>                           
                   @endif
                 </ul>
 
-                <a href="#"><i class="fa fa-gavel"></i> <span>2. Requisitos Jurídicos </span>
-                  <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('verJur')}}"> <i class="fa fa-circle-o"></i>2. Requisitos Jurídicos </a></li>
-                </ul>  
+                @if(session()->get('rango') !== '0')
+                    <a href="#"><i class="fa fa-calendar"></i> <span>Inscrip. al RSE</span>
+                       <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('verirse')}}" ><i class="fa fa-circle-o"></i>Validar y autorizar   </a></li>
+                    </ul>                
+                @endif
                  
-                <a href="#"><i class="fa fa-wheelchair-alt"></i> <span>3. Requisitos de operación </span>
-                  <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu"> 
-                  <li><a href="{{route('verPadron')}}"  ><i class="fa fa-circle-o"></i>3.1. Padrón de beneficiarios </a></li>
-                  <li><a href="{{route('verProgtrab')}}"><i class="fa fa-circle-o"></i>3.2. Programa de trabajo     </a></li>
-                  <li><a href="{{route('verInformes')}}"><i class="fa fa-circle-o"></i>3.3. Informe de labores      </a></li>
-                </ul>
-
-                <a href="#"><i class="fa fa-money"></i> <span>4. Requisitos Admon. </span>
-                  <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="{{route('verBalanza')}}"><i class="fa fa-circle-o"></i>4.1. Edos. Financieros y Balanza comp. </a></li>
-                  <li><a href="{{route('verReqc')}}"   ><i class="fa fa-circle-o"></i>4.2. Otros requisitos   </a></li>                  
-                </ul>  
-
-
                 @if(session()->get('rango') !== '0')
                 <a href="#"><i class="fa fa-calendar"></i> <span>Agenda de diligencias</span>
                   <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -225,18 +215,6 @@
                 </ul>
               </li>
               <li  class="treeview">
-                <a href="#"><i class="fa fa-area-chart"></i> <span>Estadísticas - Padrón</span>
-                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('padronxedo')}}"      ><i class="fa fa-circle-o"></i>Por estado       </a></li>
-                    <li><a href="{{route('padronxservicio')}}" ><i class="fa fa-circle-o"></i>Por servicio     </a></li>
-                    <li><a href="{{route('padronxedad')}}"     ><i class="fa fa-circle-o"></i>Por edad         </a></li>
-                    <li><a href="{{route('padronxrangoedad')}}"><i class="fa fa-circle-o"></i>Por rango de edad</a></li>
-                    <li><a href="{{route('padronxsexo')}}"     ><i class="fa fa-circle-o"></i>Por sexo         </a></li>
-                </ul>
-              </li>        
-              <li  class="treeview">
                 <a href="#"><i class="fa fa-pie-chart"></i> <span>Estadísticas - Agenda </span>
                 <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
@@ -254,9 +232,6 @@
                 </a>
                 <ul class="treeview-menu">                
                     <li><a href="{{route('verUsuarios')}}"><i class="fa fa-users"   ></i><span>Usuarios</span></a></li>
-                    <li><a href="{{route('verMapas')}}"   ><i class="fa fa-circle-o"></i>Mapa 1 </a></li>
-                    <li><a href="{{route('verMapas2')}}"  ><i class="fa fa-circle-o"></i>Mapa 2 </a></li>
-                    <li><a href="{{route('verMapas3')}}"  ><i class="fa fa-circle-o"></i>Mapa 3 </a></li>
                 </ul>
                 @endif
               </li>

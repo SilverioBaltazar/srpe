@@ -171,9 +171,10 @@ class usuariosController extends Controller
             toastr()->error('Auto registro de OSC no creado.','Error inesperado!',['positionClass' => 'toast-bottom-right']);
         } 
         //<a href="{{route('borrarPadron',$padron->folio)}}" class="btn badge-danger" title="Continuar" onclick="return confirm('¿Seguro que desea continuar?')"><i class="fa fa-times"></i></a>
-        //toastr()->success('El Factor '.$id.' ha sido modificado correctamente.','Factor '.$id.' modificado!',['positionClass' => 'toast-bottom-right']);
-        toastr()->success('Folio de acceso al sistemas.  '.$folio,['positionClass' => 'toast-bottom-right']);
-        toastr()->info(   'Folio asignado por el sistema:'.$folio,['positionClass' => 'toast-bottom-right']);
+        $strVal = (string)$folio;
+        toastr()->success('Folio asigando por el sistema ',$strVal,['positionClass' => 'toast-bottom-right']);
+        //toastr()->success('Folio de acceso al sistema: '.$folio.' ',['positionClass' => 'toast-bottom-right']);
+        toastr()->info(   'Folio asignado por el sistema:',$folio ,['positionClass' => 'toast-bottom-right']);
         //return redirect()->route('emailregistro',array($folio,strtolower($request->usuario)) );
         
         return view('sicinar.login.loginInicio');
@@ -349,7 +350,7 @@ class usuariosController extends Controller
         $nuevoUsuario->N_PERIODO = date('Y');
         $nuevoUsuario->FOLIO     = $folio; 
         //$nuevoUsuario->CVE_DEPENDENCIA = $request->unidad;
-        $nuevoUsuario->CVE_ARBOL  = $request->iap_id;
+        $nuevoUsuario->CVE_ARBOL  = $request->osc_id;
         $nuevoUsuario->LOGIN      = strtolower($request->usuario);
         $nuevoUsuario->PASSWORD   = $request->password;
         $nuevoUsuario->AP_PATERNO = strtoupper($request->paterno);
@@ -525,9 +526,9 @@ class usuariosController extends Controller
         $rango     = session()->get('rango');
         $arbol_id  = session()->get('arbol_id');
 
-        $regosc    = regOscModel::select('IAP_ID','IAP_DESC','IAP_STATUS')->orderBy('IAP_DESC','ASC')
+        $regosc    = regOscModel::select('OSC_ID','OSC_DESC','OSC_STATUS')->orderBy('OSC_DESC','ASC')
                      ->get();            
-        $user      = regusuariosModel::select('FOLIO','NOMBRES','AP_PATERNO','AP_MATERNO','LOGIN','PASSWORD','STATUS_1','STATUS_2','EMAIL','CVE_DEPENDENCIA','CVE_ARBOL')
+        $user      = regusuariosModel::select('FOLIO','NOMBRES','AP_PATERNO','AP_MATERNO','LOGIN','PASSWORD','STATUS_1','STATUS_2','CVE_DEPENDENCIA','CVE_ARBOL')
                      ->where('FOLIO',$id)
                      ->first();        
         return view('sicinar.BackOffice.editarUsuario',compact('nombre','usuario','llave','rango','user','regosc'));
@@ -623,7 +624,7 @@ class usuariosController extends Controller
                         $tp = 'PG';
         $actUser = regusuariosModel::where('FOLIO',$id)
             ->update([
-                'CVE_ARBOL'       => $request->iap_id,
+                'CVE_ARBOL'       => $request->osc_id,
                 'LOGIN'           => strtolower($request->usuario),
                 'PASSWORD'        => $request->password,
                 'AP_PATERNO'      => strtoupper($request->paterno),
@@ -646,7 +647,6 @@ class usuariosController extends Controller
             return view('sicinar.login.expirada');
         }
         $usuario      = session()->get('usuario');
-        $id_estructura= rtrim($id_estruc," ");
         $rango        = session()->get('rango');
         $ip           = session()->get('ip');
         $arbol_id     = session()->get('arbol_id');

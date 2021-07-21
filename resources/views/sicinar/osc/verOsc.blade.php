@@ -70,7 +70,7 @@
                                         <th style="text-align:left;   vertical-align: middle;">Id.              </th>
                                         <th style="text-align:left;   vertical-align: middle;">Nombre de la OSC </th>
                                         <th style="text-align:left;   vertical-align: middle;">Domicilio Legal  </th>     
-                                        <th style="text-align:left;   vertical-align: middle;">Registro<br>Const.</th>     
+                                        <th style="text-align:left;   vertical-align: middle;">Fol.Reg.<br>Púb.Prop.</th>     
                                         <th style="text-align:left;   vertical-align: middle;">Foto1            </th>
                                         <th style="text-align:left;   vertical-align: middle;">Foto2            </th>
                                         <th style="text-align:center; vertical-align: middle;">Activa <br>Inact.</th>

@@ -26,7 +26,7 @@ class ExcelExportOsc implements FromCollection, /*FromQuery,*/ WithHeadings
             'MUNICIPIO',
             'RUBRO_ID',
             'RUBRO',
-            'REGISTRO_CONSTITUCION',
+            'FOLIO_REG_PUB_PROP',
             'RFC',
             'CP',
             'FECHA_CONSTITUCION',
@@ -41,7 +41,6 @@ class ExcelExportOsc implements FromCollection, /*FromQuery,*/ WithHeadings
             'OBJETO_SOCIAL_P2',
             'FECHA_CERTIFICACION',
             'FECHA_REGISTRO',
-            'SITUACION_INM',
             'VIGENCIA',
             'STATUS'            
         ];
@@ -75,7 +74,8 @@ class ExcelExportOsc implements FromCollection, /*FromQuery,*/ WithHeadings
                                     'PE_OSC.OSC_TESORERO'   ,
                                     'PE_OSC.OSC_OBJSOC_1'   ,'PE_OSC.OSC_OBJSOC_2',        
                                     'PE_OSC.OSC_FECCERTIFIC','PE_OSC.OSC_FECREG',
-                                    'PE_CAT_INMUEBLES_EDO.INM_DESC','PE_CAT_PERIODOS_ANIOS.PERIODO_DESC',
+                                    //'PE_CAT_INMUEBLES_EDO.INM_DESC','PE_CAT_PERIODOS_ANIOS.PERIODO_DESC',
+                                    'PE_CAT_PERIODOS_ANIOS.PERIODO_DESC',
                                     'PE_OSC.OSC_STATUS')
                           ->orderBy('PE_OSC.OSC_ID','ASC')
                           ->get();                               

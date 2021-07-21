@@ -18,12 +18,11 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>Menu
-                <small>Requisitos - Requisitos jurídicos - Seleccionar para editar o registrar</small>
+                <small>2. Requisitos - Requisitos jurídicos - Seleccionar para editar o registrar</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Menú</a></li>
-                <li><a href="#">Requisitos </a></li>
-                <li><a href="#">Requisitos Jurídicos  </a></li>         
+                <li><a href="#">2. Requisitos Jurídicos  </a></li>         
             </ol>
         </section>
         <section class="content">
@@ -35,9 +34,6 @@
                         </b>
                         <div class="box-header" style="text-align:right;">
                             {{ Form::open(['route' => 'buscarJur', 'method' => 'GET', 'class' => 'form-inline pull-right']) }}
-                                <div class="form-group">
-                                    {{ Form::text('fper', null, ['class' => 'form-control', 'placeholder' => 'Periodo fiscal']) }}
-                                </div>
                                 <div class="form-group">
                                     {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre OSC']) }}
                                 </div>                                 

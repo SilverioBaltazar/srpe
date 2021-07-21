@@ -18,7 +18,7 @@ Route::get('/', function () {
     Route::group(['prefix' => 'control-interno'], function() {
     Route::post('menu', 'usuariosController@actionLogin')->name('login');
     Route::get('status-sesion/expirada', 'usuariosController@actionExpirada')->name('expirada');
-    Route::get('status-sesion/terminada', 'usuariosController@actionCerrarSesion')->name('terminada');
+    Route::get('status-sesion/terminada','usuariosController@actionCerrarSesion')->name('terminada');
  
     // Auto registro en sistema
     Route::get( 'Autoregistro/usuario'              ,'usuariosController@actionAutoregUsu')->name('autoregusu');
@@ -221,40 +221,42 @@ Route::get('/', function () {
     Route::put('informe/{id}/{id2}/actualizarinflabdet' ,'informeController@actionActualizarInformelab')->name('actualizarInformelab');
     //Route::get('informe/{id}/{id2}/Borrarinflabdet'     ,'informeController@actionBorrarInformelab')->name('borrarInformelab');
 
-    //Requisitos asistenciales ojo borrar ***************** 
-    Route::get('rasistencia/nueva'              ,'rAsistenciaController@actionNuevoReqa')->name('nuevoReqa');
-    Route::post('rasistencia/nueva/alta'        ,'rAsistenciaController@actionAltaNuevoReqa')->name('AltaNuevoReqa');    
-    Route::get('rasistencia/ver/todasa'         ,'rAsistenciaController@actionVerReqa')->name('verReqa');
-    Route::get('rasistencia/{id}/editar/reqa'   ,'rAsistenciaController@actionEditarReqa')->name('editarReqa');
-    Route::put('rasistencia/{id}/actualizarreqa','rAsistenciaController@actionActualizarReqa')->name('actualizarReqa'); 
-    Route::get('rasistencia/{id}/Borrarreqa'    ,'rAsistenciaController@actionBorrarReqa')->name('borrarReqa');
 
-    Route::get('rasistencia/{id}/editar/reqa1'   ,'rAsistenciaController@actionEditarReqa1')->name('editarReqa1');
-    Route::put('rasistencia/{id}/actualizarreqa1','rAsistenciaController@actionActualizarReqa1')->name('actualizarReqa1');    
-    Route::get('rasistencia/{id}/editar/reqa2'   ,'rAsistenciaController@actionEditarReqa2')->name('editarReqa2');
-    Route::put('rasistencia/{id}/actualizarreqa2','rAsistenciaController@actionActualizarReqa2')->name('actualizarReqa2'); 
+    //Requisitos operativos
+    Route::get('rop/ver/todasc'          ,'rOperativosController@actionVerReqop')->name('verReqop');
+    Route::get('rop/buscar/todos'        ,'rOperativosController@actionBuscarReqop')->name('buscarReqop');        
+    Route::get('rop/nueva'               ,'rOperativosController@actionNuevoReqop')->name('nuevoReqop');
+    Route::post('rop/nueva/alta'         ,'rOperativosController@actionAltaNuevoReqop')->name('AltaNuevoReqop');      
+    Route::get('rop/{id}/editar/reqop'   ,'rOperativosController@actionEditarReqop')->name('editarReqop');
+    Route::put('rop/{id}/actualizarreqop','rOperativosController@actionActualizarReqop')->name('actualizarReqop'); 
+    Route::get('rop/{id}/Borrarreqop'    ,'rOperativosController@actionBorrarReqop')->name('borrarReqop');
 
-    Route::get('rasistencia/{id}/editar/reqa3'   ,'rAsistenciaController@actionEditarReqa3')->name('editarReqa3');
-    Route::put('rasistencia/{id}/actualizarreqa3','rAsistenciaController@actionActualizarReqa3')->name('actualizarReqa3');    
-    Route::get('rasistencia/{id}/editar/reqa4'   ,'rAsistenciaController@actionEditarReqa4')->name('editarReqa4');
-    Route::put('rasistencia/{id}/actualizarreqa4','rAsistenciaController@actionActualizarReqa4')->name('actualizarReqa4');    
-    Route::get('rasistencia/{id}/editar/reqa5'   ,'rAsistenciaController@actionEditarReqa5')->name('editarReqa5');
-    Route::put('rasistencia/{id}/actualizarreqa5','rAsistenciaController@actionActualizarReqa5')->name('actualizarReqa5');
+    Route::get('rop/{id}/editar/reqop1'   ,'rOperativosController@actionEditarReqop1')->name('editarReqop1');
+    Route::put('rop/{id}/actualizarreqop1','rOperativosController@actionActualizarReqop1')->name('actualizarReqop1');    
+
+    Route::get('rop/{id}/editar/reqop2'   ,'rOperativosController@actionEditarReqop2')->name('editarReqop2');
+    Route::put('rop/{id}/actualizarreqop2','rOperativosController@actionActualizarReqop2')->name('actualizarReqop2'); 
+
+    Route::get('rop/{id}/editar/reqop3'   ,'rOperativosController@actionEditarReqop3')->name('editarReqop3');
+    Route::put('rop/{id}/actualizarreqop3','rOperativosController@actionActualizarReqop3')->name('actualizarReqop3');    
+
+    Route::get('rop/{id}/editar/reqc9'   ,'rOperativosController@actionEditarReqc9')->name('editarReqc9');
+    Route::put('rop/{id}/actualizarreqc9','rOperativosController@actionActualizarReqc9')->name('actualizarReqc9');    
 
     //Requisitos administrativos
-     //Requisito contable - Edos financieros, Balanza de comprobación
-    Route::get('balanza/nueva'             ,'balanzaController@actionNuevaBalanza')->name('nuevaBalanza');
-    Route::post('balanz/nueva/alta'        ,'balanzaController@actionAltaNuevaBalanza')->name('AltaNuevaBalanza');
-    Route::get('balanza/ver/todos'         ,'balanzaController@actionVerBalanza')->name('verBalanza');
-    Route::get('balanza/buscar/todos'      ,'balanzaController@actionBuscarBalanza')->name('buscarBalanza');    
-    Route::get('balanza/{id}/editar/activo','balanzaController@actionEditarBalanza')->name('editarBalanza');
-    Route::put('balanza/{id}/actualizar'   ,'balanzaController@actionActualizarBalanza')->name('actualizarBalanza');
-    Route::get('balanza/{id}/Borrar'       ,'balanzaController@actionBorrarBalanza')->name('borrarBalanza');
-    Route::get('balanza/excel'             ,'balanzaController@actionExportvExcel')->name('ExportBalanzaExcel');
-    Route::get('balanza/pdf'               ,'balanzaController@actionExportBalanzaPdf')->name('ExportBalanzaPdf');
+    //Requisito contable - Edos financieros, Balanza de comprobación
+    //Route::get('balanza/nueva'             ,'balanzaController@actionNuevaBalanza')->name('nuevaBalanza');
+    //Route::post('balanz/nueva/alta'        ,'balanzaController@actionAltaNuevaBalanza')->name('AltaNuevaBalanza');
+    //Route::get('balanza/ver/todos'         ,'balanzaController@actionVerBalanza')->name('verBalanza');
+    //Route::get('balanza/buscar/todos'      ,'balanzaController@actionBuscarBalanza')->name('buscarBalanza');    
+    //Route::get('balanza/{id}/editar/activo','balanzaController@actionEditarBalanza')->name('editarBalanza');
+    //Route::put('balanza/{id}/actualizar'   ,'balanzaController@actionActualizarBalanza')->name('actualizarBalanza');
+    //Route::get('balanza/{id}/Borrar'       ,'balanzaController@actionBorrarBalanza')->name('borrarBalanza');
+    //Route::get('balanza/excel'             ,'balanzaController@actionExportvExcel')->name('ExportBalanzaExcel');
+    //Route::get('balanza/pdf'               ,'balanzaController@actionExportBalanzaPdf')->name('ExportBalanzaPdf');
 
-    Route::get('balanza/{id}/editar/balanza1'   ,'balanzaController@actionEditarBalanza1')->name('editarBalanza1');
-    Route::put('balanza/{id}/actualizarbalanza1','balanzaController@actionActualizarBalanza1')->name('actualizarBalanza1');  
+    //Route::get('balanza/{id}/editar/balanza1'   ,'balanzaController@actionEditarBalanza1')->name('editarBalanza1');
+    //Route::put('balanza/{id}/actualizarbalanza1','balanzaController@actionActualizarBalanza1')->name('actualizarBalanza1');  
 
     //Requisitos administrativos
     // Otros requisitos admon.  
@@ -280,10 +282,13 @@ Route::get('/', function () {
 
     Route::get('rcontables/{id}/editar/reqc11'   ,'rContablesController@actionEditarReqc11')->name('editarReqc11');
     Route::put('rcontables/{id}/actualizarreqc11','rContablesController@actionActualizarReqc11')->name('actualizarReqc11');  
+
+    Route::get('rcontables/{id}/editar/reqc10'   ,'rContablesController@actionEditarReqc10')->name('editarReqc10');
+    Route::put('rcontables/{id}/actualizarreqc10','rContablesController@actionActualizarReqc10')->name('actualizarReqc10');     
+    Route::get('rcontables/{id}/editar/reqc11'   ,'rContablesController@actionEditarReqc11')->name('editarReqc11'); 
+    Route::put('rcontables/{id}/actualizarreqc11','rContablesController@actionActualizarReqc11')->name('actualizarReqc11');
     
     // quotas de 5 al millar meses
-    Route::get('rcontables/{id}/editar/reqc10'     ,'rContablesController@actionEditarReqc10')->name('editarReqc10');
-    Route::put('rcontables/{id}/actualizarreqc10'  ,'rContablesController@actionActualizarReqc10')->name('actualizarReqc10');     
     Route::get('rcontables/{id}/editar/reqc1002'   ,'rContablesController@actionEditarReqc1002')->name('editarReqc1002');
     Route::put('rcontables/{id}/actualizarreqc1002','rContablesController@actionActualizarReqc1002')->name('actualizarReqc1002');
     Route::get('rcontables/{id}/editar/reqc1003'   ,'rContablesController@actionEditarReqc1003')->name('editarReqc1003');
@@ -306,6 +311,15 @@ Route::get('/', function () {
     Route::put('rcontables/{id}/actualizarreqc1011','rContablesController@actionActualizarReqc1011')->name('actualizarReqc1011');
     Route::get('rcontables/{id}/editar/reqc1012'   ,'rContablesController@actionEditarReqc1012')->name('editarReqc1012');
     Route::put('rcontables/{id}/actualizarreqc1012','rContablesController@actionActualizarReqc1012')->name('actualizarReqc1012');
+
+    // Validar y autorizar Incripción al RSE
+    Route::get('validar/ver/irse'             ,'validarrseController@actionVerIrse')->name('verirse');
+    Route::get('validar/buscar/irse'          ,'validarrseController@actionBuscarIrse')->name('buscarirse');  
+    Route::get('validar/nueva'                ,'validarrseController@actionNuevoValrse')->name('nuevoValrse');
+    Route::post('validar/nueva/alta'          ,'validarrseController@actionAltaNuevoValrse')->name('AltaNuevoValrse');    
+    Route::get('validar/{id}/editar/valrse'   ,'validarrseController@actionEditarValrse')->name('editarValrse');
+    Route::put('validar/{id}/actualizarvalrse','validarrseController@actionActualizarValrse')->name('actualizarValrse');     
+    Route::get('validar/{id}/{id2}/pdf'       ,'validarrseController@actionIrsePDF')->name('irsePDF');   
     
     // Agenda
     //Programar diligencias
@@ -342,6 +356,7 @@ Route::get('/', function () {
     Route::get('indicador/buscar/matriz'    ,'indicadoresController@actionBuscarmatrizCump')->name('buscarmatrizcump');      
     Route::get('indicador/ver/todasvisitas' ,'indicadoresController@actionVerCumplimientovisitas')->name('vercumplimientovisitas');
     Route::get('indicador/buscar/allvisitas','indicadoresController@actionBuscarCumplimientovisitas')->name('buscarcumplimientovisitas');    
+    Route::get('indicador/{id}/oficiopdf'   ,'indicadoresController@actionOficioInscripPdf')->name('oficioInscripPdf'); 
 
     //Estadísticas
     //OSC

@@ -52,7 +52,7 @@
                                 <div class="col-xs-4 form-group">
                                     <select class="form-control m-bot15" name="perfil" id="perfil" required>
                                         <option selected="true" disabled="disabled">Selecciona un Rol</option>
-                                        <option value="0">IAP        </option>
+                                        <option value="0">OSC       </option>
                                         <option value="1">Operativo  </option>
                                         <!--<option value="2">Particular</option>-->
                                         <option value="3">Administrador</option>
@@ -63,18 +63,10 @@
 
                             <div class="row">
                                 <div class="col-xs-4 form-group">
-                                    <select class="form-control m-bot15" name="unidad" id="unidad" required>
-                                        <option selected="true" disabled="disabled">Seleccionar Unidad Administrativa</option>
-                                        @foreach($dependencias as $dependencia)
-                                            <option value="{{$dependencia->depen_id}}">{{$dependencia->depen_id.' '.$dependencia->depen_desc}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-xs-4 form-group">
-                                    <select class="form-control m-bot15" name="iap_id" id="iap_id" required>
-                                        <option selected="true" disabled="disabled">Seleccionar IAP</option>
-                                        @foreach($regiap as $iap)
-                                            <option value="{{$iap->iap_id}}">{{$iap->iap_desc.' '.$iap->iap_id}}</option>
+                                    <select class="form-control m-bot15" name="osc_id" id="osc_id" required>
+                                        <option selected="true" disabled="disabled">Seleccionar osc</option>
+                                        @foreach($regosc as $osc)
+                                            <option value="{{$osc->osc_id}}">{{$osc->osc_desc.' '.$osc->osc_id}}</option>
                                         @endforeach
                                     </select>
                                 </div>                                

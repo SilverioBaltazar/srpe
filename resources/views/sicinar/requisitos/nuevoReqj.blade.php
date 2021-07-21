@@ -39,15 +39,6 @@
                                         @endforeach
                                     </select>                                    
                                 </div>   
-                                <div class="col-xs-4 form-group">
-                                    <label >Periodo fiscal </label>
-                                    <select class="form-control m-bot15" name="periodo_id" id="periodo_id" required>
-                                        <option selected="true" disabled="disabled">Seleccionar periodo fiscal</option>
-                                        @foreach($regperiodos as $periodo)
-                                            <option value="{{$periodo->periodo_id}}">{{$periodo->periodo_desc}}</option>
-                                        @endforeach
-                                    </select>                                    
-                                </div>                                                              
                             </div>     
 
                             <div class="row">
